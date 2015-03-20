@@ -1,0 +1,42 @@
+Configuring JuicyPixels-3.2.2...
+Building JuicyPixels-3.2.2...
+Preprocessing library JuicyPixels-3.2.2...
+[ 1 of 24] Compiling Codec.Picture.InternalHelper ( src/Codec/Picture/InternalHelper.hs, dist/dist-sandbox-ac976196/build/Codec/Picture/InternalHelper.o )
+[ 2 of 24] Compiling Codec.Picture.Types ( src/Codec/Picture/Types.hs, dist/dist-sandbox-ac976196/build/Codec/Picture/Types.o )
+[ 3 of 24] Compiling Codec.Picture.ColorQuant ( src/Codec/Picture/ColorQuant.hs, dist/dist-sandbox-ac976196/build/Codec/Picture/ColorQuant.o )
+[ 4 of 24] Compiling Codec.Picture.VectorByteConversion ( src/Codec/Picture/VectorByteConversion.hs, dist/dist-sandbox-ac976196/build/Codec/Picture/VectorByteConversion.o )
+[ 5 of 24] Compiling Codec.Picture.BitWriter ( src/Codec/Picture/BitWriter.hs, dist/dist-sandbox-ac976196/build/Codec/Picture/BitWriter.o )
+
+src/Codec/Picture/BitWriter.hs:33:1: Warning:
+    The import of `Control.Applicative' is redundant
+      except perhaps to import instances from `Control.Applicative'
+    To import instances alone, use: import Control.Applicative()
+[ 6 of 24] Compiling Codec.Picture.Gif.LZW ( src/Codec/Picture/Gif/LZW.hs, dist/dist-sandbox-ac976196/build/Codec/Picture/Gif/LZW.o )
+[ 7 of 24] Compiling Codec.Picture.Gif.LZWEncoding ( src/Codec/Picture/Gif/LZWEncoding.hs, dist/dist-sandbox-ac976196/build/Codec/Picture/Gif/LZWEncoding.o )
+[ 8 of 24] Compiling Codec.Picture.Jpg.DefaultTable ( src/Codec/Picture/Jpg/DefaultTable.hs, dist/dist-sandbox-ac976196/build/Codec/Picture/Jpg/DefaultTable.o )
+[ 9 of 24] Compiling Codec.Picture.Jpg.Types ( src/Codec/Picture/Jpg/Types.hs, dist/dist-sandbox-ac976196/build/Codec/Picture/Jpg/Types.o )
+[10 of 24] Compiling Codec.Picture.Jpg.FastDct ( src/Codec/Picture/Jpg/FastDct.hs, dist/dist-sandbox-ac976196/build/Codec/Picture/Jpg/FastDct.o )
+[11 of 24] Compiling Codec.Picture.Jpg.FastIdct ( src/Codec/Picture/Jpg/FastIdct.hs, dist/dist-sandbox-ac976196/build/Codec/Picture/Jpg/FastIdct.o )
+[12 of 24] Compiling Codec.Picture.Png.Type ( src/Codec/Picture/Png/Type.hs, dist/dist-sandbox-ac976196/build/Codec/Picture/Png/Type.o )
+[13 of 24] Compiling Codec.Picture.Png.Export ( src/Codec/Picture/Png/Export.hs, dist/dist-sandbox-ac976196/build/Codec/Picture/Png/Export.o )
+[14 of 24] Compiling Codec.Picture.Jpg.Common ( src/Codec/Picture/Jpg/Common.hs, dist/dist-sandbox-ac976196/build/Codec/Picture/Jpg/Common.o )
+
+src/Codec/Picture/Jpg/Common.hs:26:1: Warning:
+    The import of `Control.Applicative' is redundant
+      except perhaps to import instances from `Control.Applicative'
+    To import instances alone, use: import Control.Applicative()
+[15 of 24] Compiling Codec.Picture.Jpg.Progressive ( src/Codec/Picture/Jpg/Progressive.hs, dist/dist-sandbox-ac976196/build/Codec/Picture/Jpg/Progressive.o )
+[16 of 24] Compiling Codec.Picture.Tga ( src/Codec/Picture/Tga.hs, dist/dist-sandbox-ac976196/build/Codec/Picture/Tga.o )
+[17 of 24] Compiling Codec.Picture.Tiff ( src/Codec/Picture/Tiff.hs, dist/dist-sandbox-ac976196/build/Codec/Picture/Tiff.o )
+[18 of 24] Compiling Codec.Picture.HDR ( src/Codec/Picture/HDR.hs, dist/dist-sandbox-ac976196/build/Codec/Picture/HDR.o )
+[19 of 24] Compiling Codec.Picture.Gif ( src/Codec/Picture/Gif.hs, dist/dist-sandbox-ac976196/build/Codec/Picture/Gif.o )
+[20 of 24] Compiling Codec.Picture.Png ( src/Codec/Picture/Png.hs, dist/dist-sandbox-ac976196/build/Codec/Picture/Png.o )
+[21 of 24] Compiling Codec.Picture.Jpg ( src/Codec/Picture/Jpg.hs, dist/dist-sandbox-ac976196/build/Codec/Picture/Jpg.o )
+[22 of 24] Compiling Codec.Picture.Bitmap ( src/Codec/Picture/Bitmap.hs, dist/dist-sandbox-ac976196/build/Codec/Picture/Bitmap.o )
+[23 of 24] Compiling Codec.Picture.Saving ( src/Codec/Picture/Saving.hs, dist/dist-sandbox-ac976196/build/Codec/Picture/Saving.o )
+[24 of 24] Compiling Codec.Picture    ( src/Codec/Picture.hs, dist/dist-sandbox-ac976196/build/Codec/Picture.o )
+In-place registering JuicyPixels-3.2.2...
+Creating package registration file: /tmp/pkgConf-JuicyPixels-3.212400.2
+Installing library in
+/home/prashant/Thesis/tree/.cabal-sandbox/lib/x86_64-linux-ghc-7.6.3/JuicyPixels-3.2.2
+Registering JuicyPixels-3.2.2...

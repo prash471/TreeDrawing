@@ -1,0 +1,16 @@
+Configuring blaze-svg-0.3.4.1...
+Building blaze-svg-0.3.4.1...
+Preprocessing library blaze-svg-0.3.4.1...
+[1 of 8] Compiling Text.Blaze.Svg.Renderer.Utf8 ( src/Text/Blaze/Svg/Renderer/Utf8.hs, dist/dist-sandbox-ac976196/build/Text/Blaze/Svg/Renderer/Utf8.o )
+[2 of 8] Compiling Text.Blaze.Svg.Renderer.Text ( src/Text/Blaze/Svg/Renderer/Text.hs, dist/dist-sandbox-ac976196/build/Text/Blaze/Svg/Renderer/Text.o )
+[3 of 8] Compiling Text.Blaze.Svg.Renderer.String ( src/Text/Blaze/Svg/Renderer/String.hs, dist/dist-sandbox-ac976196/build/Text/Blaze/Svg/Renderer/String.o )
+[4 of 8] Compiling Text.Blaze.Svg.Renderer.Pretty ( src/Text/Blaze/Svg/Renderer/Pretty.hs, dist/dist-sandbox-ac976196/build/Text/Blaze/Svg/Renderer/Pretty.o )
+[5 of 8] Compiling Text.Blaze.Svg11.Attributes ( src/Text/Blaze/Svg11/Attributes.hs, dist/dist-sandbox-ac976196/build/Text/Blaze/Svg11/Attributes.o )
+[6 of 8] Compiling Text.Blaze.Svg.Internal ( src/Text/Blaze/Svg/Internal.hs, dist/dist-sandbox-ac976196/build/Text/Blaze/Svg/Internal.o )
+[7 of 8] Compiling Text.Blaze.Svg   ( src/Text/Blaze/Svg.hs, dist/dist-sandbox-ac976196/build/Text/Blaze/Svg.o )
+[8 of 8] Compiling Text.Blaze.Svg11 ( src/Text/Blaze/Svg11.hs, dist/dist-sandbox-ac976196/build/Text/Blaze/Svg11.o )
+In-place registering blaze-svg-0.3.4.1...
+Creating package registration file: /tmp/pkgConf-blaze-svg-0.3.412400.1
+Installing library in
+/home/prashant/Thesis/tree/.cabal-sandbox/lib/x86_64-linux-ghc-7.6.3/blaze-svg-0.3.4.1
+Registering blaze-svg-0.3.4.1...

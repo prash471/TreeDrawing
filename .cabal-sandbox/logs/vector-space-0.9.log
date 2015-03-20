@@ -1,0 +1,16 @@
+Configuring vector-space-0.9...
+Building vector-space-0.9...
+Preprocessing library vector-space-0.9...
+[1 of 8] Compiling Data.AdditiveGroup ( src/Data/AdditiveGroup.hs, dist/dist-sandbox-ac976196/build/Data/AdditiveGroup.o )
+[2 of 8] Compiling Data.VectorSpace ( src/Data/VectorSpace.hs, dist/dist-sandbox-ac976196/build/Data/VectorSpace.o )
+[3 of 8] Compiling Data.Basis       ( src/Data/Basis.hs, dist/dist-sandbox-ac976196/build/Data/Basis.o )
+[4 of 8] Compiling Data.AffineSpace ( src/Data/AffineSpace.hs, dist/dist-sandbox-ac976196/build/Data/AffineSpace.o )
+[5 of 8] Compiling Data.LinearMap   ( src/Data/LinearMap.hs, dist/dist-sandbox-ac976196/build/Data/LinearMap.o )
+[6 of 8] Compiling Data.Maclaurin   ( src/Data/Maclaurin.hs, dist/dist-sandbox-ac976196/build/Data/Maclaurin.o )
+[7 of 8] Compiling Data.Derivative  ( src/Data/Derivative.hs, dist/dist-sandbox-ac976196/build/Data/Derivative.o )
+[8 of 8] Compiling Data.Cross       ( src/Data/Cross.hs, dist/dist-sandbox-ac976196/build/Data/Cross.o )
+In-place registering vector-space-0.9...
+Creating package registration file: /tmp/pkgConf-vector-space-012400.9
+Installing library in
+/home/prashant/Thesis/tree/.cabal-sandbox/lib/x86_64-linux-ghc-7.6.3/vector-space-0.9
+Registering vector-space-0.9...

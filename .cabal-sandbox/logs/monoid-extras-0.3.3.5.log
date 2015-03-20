@@ -1,0 +1,18 @@
+Configuring monoid-extras-0.3.3.5...
+Building monoid-extras-0.3.3.5...
+Preprocessing library monoid-extras-0.3.3.5...
+[ 1 of 10] Compiling Data.Monoid.WithSemigroup ( src/Data/Monoid/WithSemigroup.hs, dist/dist-sandbox-ac976196/build/Data/Monoid/WithSemigroup.o )
+[ 2 of 10] Compiling Data.Monoid.Recommend ( src/Data/Monoid/Recommend.hs, dist/dist-sandbox-ac976196/build/Data/Monoid/Recommend.o )
+[ 3 of 10] Compiling Data.Monoid.Inf  ( src/Data/Monoid/Inf.hs, dist/dist-sandbox-ac976196/build/Data/Monoid/Inf.o )
+[ 4 of 10] Compiling Data.Monoid.Endomorphism ( src/Data/Monoid/Endomorphism.hs, dist/dist-sandbox-ac976196/build/Data/Monoid/Endomorphism.o )
+[ 5 of 10] Compiling Data.Monoid.Deletable ( src/Data/Monoid/Deletable.hs, dist/dist-sandbox-ac976196/build/Data/Monoid/Deletable.o )
+[ 6 of 10] Compiling Data.Monoid.Cut  ( src/Data/Monoid/Cut.hs, dist/dist-sandbox-ac976196/build/Data/Monoid/Cut.o )
+[ 7 of 10] Compiling Data.Monoid.Action ( src/Data/Monoid/Action.hs, dist/dist-sandbox-ac976196/build/Data/Monoid/Action.o )
+[ 8 of 10] Compiling Data.Monoid.Coproduct ( src/Data/Monoid/Coproduct.hs, dist/dist-sandbox-ac976196/build/Data/Monoid/Coproduct.o )
+[ 9 of 10] Compiling Data.Monoid.MList ( src/Data/Monoid/MList.hs, dist/dist-sandbox-ac976196/build/Data/Monoid/MList.o )
+[10 of 10] Compiling Data.Monoid.Split ( src/Data/Monoid/Split.hs, dist/dist-sandbox-ac976196/build/Data/Monoid/Split.o )
+In-place registering monoid-extras-0.3.3.5...
+Creating package registration file: /tmp/pkgConf-monoid-extras-0.3.312400.5
+Installing library in
+/home/prashant/Thesis/tree/.cabal-sandbox/lib/x86_64-linux-ghc-7.6.3/monoid-extras-0.3.3.5
+Registering monoid-extras-0.3.3.5...

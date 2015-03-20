@@ -1,0 +1,54 @@
+Configuring exceptions-0.8...
+Building exceptions-0.8...
+Preprocessing library exceptions-0.8...
+[1 of 2] Compiling Control.Monad.Catch ( src/Control/Monad/Catch.hs, dist/dist-sandbox-ac976196/build/Control/Monad/Catch.o )
+
+src/Control/Monad/Catch.hs:94:1: Warning:
+    Module `Control.Monad.Trans.Error' is deprecated:
+      Use Control.Monad.Trans.Except instead
+
+src/Control/Monad/Catch.hs:99:1: Warning:
+    The import of `Control.Monad.Trans.Reader' is redundant
+      except perhaps to import instances from `Control.Monad.Trans.Reader'
+    To import instances alone, use: import Control.Monad.Trans.Reader()
+
+src/Control/Monad/Catch.hs:315:11: Warning:
+    In the use of type constructor or class `Error'
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+src/Control/Monad/Catch.hs:315:49: Warning:
+    In the use of type constructor or class `ErrorT'
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+src/Control/Monad/Catch.hs:318:11: Warning:
+    In the use of type constructor or class `Error'
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+src/Control/Monad/Catch.hs:318:49: Warning:
+    In the use of type constructor or class `ErrorT'
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+src/Control/Monad/Catch.hs:319:10: Warning:
+    In the use of data constructor `ErrorT'
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+src/Control/Monad/Catch.hs:319:24: Warning:
+    In the use of data constructor `ErrorT'
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+
+src/Control/Monad/Catch.hs:319:42: Warning:
+    In the use of `runErrorT'
+    (imported from Control.Monad.Trans.Error):
+    Deprecated: "Use Control.Monad.Trans.Except instead"
+[2 of 2] Compiling Control.Monad.Catch.Pure ( src/Control/Monad/Catch/Pure.hs, dist/dist-sandbox-ac976196/build/Control/Monad/Catch/Pure.o )
+In-place registering exceptions-0.8...
+Creating package registration file: /tmp/pkgConf-exceptions-05606.8
+Installing library in
+/home/prashant/Thesis/tree/.cabal-sandbox/lib/x86_64-linux-ghc-7.6.3/exceptions-0.8
+Registering exceptions-0.8...

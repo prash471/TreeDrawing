@@ -1,0 +1,40 @@
+Configuring optparse-applicative-0.11.0.2...
+Building optparse-applicative-0.11.0.2...
+Preprocessing library optparse-applicative-0.11.0.2...
+[ 1 of 15] Compiling Options.Applicative.Help.Pretty ( Options/Applicative/Help/Pretty.hs, dist/dist-sandbox-ac976196/build/Options/Applicative/Help/Pretty.o )
+[ 2 of 15] Compiling Options.Applicative.Help.Chunk ( Options/Applicative/Help/Chunk.hs, dist/dist-sandbox-ac976196/build/Options/Applicative/Help/Chunk.o )
+[ 3 of 15] Compiling Options.Applicative.Help.Types ( Options/Applicative/Help/Types.hs, dist/dist-sandbox-ac976196/build/Options/Applicative/Help/Types.o )
+[ 4 of 15] Compiling Options.Applicative.Types ( Options/Applicative/Types.hs, dist/dist-sandbox-ac976196/build/Options/Applicative/Types.o )
+[ 5 of 15] Compiling Options.Applicative.Internal ( Options/Applicative/Internal.hs, dist/dist-sandbox-ac976196/build/Options/Applicative/Internal.o )
+[ 6 of 15] Compiling Options.Applicative.Builder.Completer ( Options/Applicative/Builder/Completer.hs, dist/dist-sandbox-ac976196/build/Options/Applicative/Builder/Completer.o )
+[ 7 of 15] Compiling Options.Applicative.Common ( Options/Applicative/Common.hs, dist/dist-sandbox-ac976196/build/Options/Applicative/Common.o )
+[ 8 of 15] Compiling Options.Applicative.Builder.Internal ( Options/Applicative/Builder/Internal.hs, dist/dist-sandbox-ac976196/build/Options/Applicative/Builder/Internal.o )
+[ 9 of 15] Compiling Options.Applicative.Builder ( Options/Applicative/Builder.hs, dist/dist-sandbox-ac976196/build/Options/Applicative/Builder.o )
+[10 of 15] Compiling Options.Applicative.BashCompletion ( Options/Applicative/BashCompletion.hs, dist/dist-sandbox-ac976196/build/Options/Applicative/BashCompletion.o )
+[11 of 15] Compiling Options.Applicative.Help.Core ( Options/Applicative/Help/Core.hs, dist/dist-sandbox-ac976196/build/Options/Applicative/Help/Core.o )
+Loading package ghc-prim ... linking ... done.
+Loading package integer-gmp ... linking ... done.
+Loading package base ... linking ... done.
+Loading package transformers-0.4.2.0 ... linking ... done.
+Loading package transformers-compat-0.4.0.4 ... linking ... done.
+Loading package array-0.4.0.1 ... linking ... done.
+Loading package deepseq-1.3.0.1 ... linking ... done.
+Loading package filepath-1.3.0.1 ... linking ... done.
+Loading package old-locale-1.0.0.5 ... linking ... done.
+Loading package time-1.4.0.1 ... linking ... done.
+Loading package bytestring-0.10.0.2 ... linking ... done.
+Loading package unix-2.6.0.1 ... linking ... done.
+Loading package directory-1.2.0.1 ... linking ... done.
+Loading package process-1.1.0.2 ... linking ... done.
+Loading package ansi-terminal-0.6.2.1 ... linking ... done.
+Loading package ansi-wl-pprint-0.6.7.1 ... linking ... done.
+[12 of 15] Compiling Options.Applicative.Help ( Options/Applicative/Help.hs, dist/dist-sandbox-ac976196/build/Options/Applicative/Help.o )
+[13 of 15] Compiling Options.Applicative.Extra ( Options/Applicative/Extra.hs, dist/dist-sandbox-ac976196/build/Options/Applicative/Extra.o )
+[14 of 15] Compiling Options.Applicative ( Options/Applicative.hs, dist/dist-sandbox-ac976196/build/Options/Applicative.o )
+[15 of 15] Compiling Options.Applicative.Arrows ( Options/Applicative/Arrows.hs, dist/dist-sandbox-ac976196/build/Options/Applicative/Arrows.o )
+In-place registering optparse-applicative-0.11.0.2...
+Creating package registration file:
+/tmp/pkgConf-optparse-applicative-0.11.05606.2
+Installing library in
+/home/prashant/Thesis/tree/.cabal-sandbox/lib/x86_64-linux-ghc-7.6.3/optparse-applicative-0.11.0.2
+Registering optparse-applicative-0.11.0.2...
