@@ -35,9 +35,8 @@ renderTree n e = renderTree' n (e `on` snd)
 ----------------------------------------------------------------------
 -- Tree rendering
 --   Draw a tree annotated with node positions, given functions
---   specifying how to draw nodes and edges.  Unlike 'renderTree',
---   this version gives the edge-drawing function access to the actual
---   values stored at the nodes rather than just their positions.
+--   specifying how to draw nodes and edges.
+
 renderTree' :: Monoid' m
            => (a -> QDiagram b R2 m) -> ((a,P2) -> (a,P2) -> QDiagram b R2 m)
            -> Tree (a, P2) -> QDiagram b R2 m
