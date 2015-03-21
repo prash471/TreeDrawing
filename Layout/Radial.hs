@@ -27,15 +27,15 @@ unRelativizeRadial curPt (Node a ts) = Node (a, curPt) (L.zipWith (\v t -> unRel
   where	vs   = L.map (scale (1/len)) (K.iterateN len (rotateBy (1/fromIntegral len)) unit_X)
         len  = fromIntegral (L.length ts)
 
-renderTree :: Monoid' m
-           => (a -> QDiagram b R2 m) -> (P2 -> P2 -> QDiagram b R2 m)
-           -> Tree (a, P2) -> QDiagram b R2 m
-renderTree n e = renderTree' n (e `on` snd)
-
 ----------------------------------------------------------------------
 -- Tree rendering
 --   Draw a tree annotated with node positions, given functions
 --   specifying how to draw nodes and edges.
+
+renderTree :: Monoid' m
+           => (a -> QDiagram b R2 m) -> (P2 -> P2 -> QDiagram b R2 m)
+           -> Tree (a, P2) -> QDiagram b R2 m
+renderTree n e = renderTree' n (e `on` snd)
 
 renderTree' :: Monoid' m
            => (a -> QDiagram b R2 m) -> ((a,P2) -> (a,P2) -> QDiagram b R2 m)
