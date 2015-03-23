@@ -24,7 +24,7 @@ radialLayout t = unRelativizeRadial (mkP2 1 1) t
 
 unRelativizeRadial :: P2 -> Tree a -> Tree(a,P2)
 unRelativizeRadial curPt (Node a ts) = Node (a, curPt) (L.zipWith (\v t -> unRelativizeRadial (curPt .+^ v) t) vs ts)
-  where	vs   = L.map (scale (1/len)) (K.iterateN len (rotateBy (1/fromIntegral len)) unit_X)
+  where	L.map (scale (1/len)) (L.map (rotateBy (1/fromIntegral len/2)) (K.iterateN len (rotateBy (1/fromIntegral len)) unit_X))
         len  = fromIntegral (L.length ts)
 
 ----------------------------------------------------------------------
