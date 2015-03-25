@@ -8,7 +8,7 @@ t1 = Node 'A' [Node 'B' [], Node 'C'[], Node 'D'[], Node 'E'[], Node 'F'[], Node
 example =
    renderTree (\n -> (text (show n) # fontSizeG 0.2
                             <> circle 0.03 # fc white))
-             (~~) (radialLayout t1)
+             (~~) (radialLayout1 t1)
    # centerXY # pad 1.1
 
 main = defaultMain example
