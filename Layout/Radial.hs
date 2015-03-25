@@ -38,7 +38,7 @@ foo k = mkP2 (r * cos t) (r * sin t)
         -- scale as 64: depending upon tree width
 
 radialLayout2 :: Tree a -> Tree (a,P2)
-radialLayout2 t = unRelativizeRadial2 t
+radialLayout2 t = unRelativizeRadial2 (symmLayout' t)
 
 unRelativizeRadial2 :: Tree (a,P2) -> Tree(a,P2)
 unRelativizeRadial2 tree =  fmap (\x -> (fst x, foo (snd x))) tree
