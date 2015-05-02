@@ -13,7 +13,7 @@ import Data.Function       (on)
 unRelativizeRadial3 :: Tree (a,P2) -> Double -> Angle -> Angle -> Tree (a,P2)
 unRelativizeRadial3 (Node (a,pt) ts) alpha beta r k = Node (a,pt) (map (foo2 alpha beta r k (Node (a,pt) ts)) ts) # countChildren ts alpha beta r k
 
-foo2:: Double -> Angle -> Angle -> P2 -> P2
+foo2:: Double -> Angle -> Angle -> P2 -> Tree (a,P2) -> P2
 foo2 r alpha beta pt t = mkP2 (r * cos (theta + u)/2) (r * sin (theta + u)/2)
   where	u         = theta + (beta - alpha) * lambda / lambda  
         lambda    = countLeaves t 
