@@ -15,7 +15,6 @@ t1 = Node 'A' [Node 'B' (L.map lf "CD"), Node 'I' (L.map lf "JK")] where lf x = 
 decorateDepth:: Int -> Tree a -> Tree (a,Int)
 decorateDepth d (Node a ts) = Node (a,d) $ L.map (decorateDepth (d+1)) ts
 
-
 radialLayoutstart:: Tree a -> Angle -> Angle -> Tree (a,P2)
 radialLayoutstart t1 alpha beta = radialLayout (decorateDepth t1) alpha beta (countLeaves t1) 
 
