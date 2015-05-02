@@ -17,8 +17,8 @@ decorateDepth d (Node a ts) = Node (a,d) $ L.map (decorateDepth (d+1)) ts
 
 radialLayout :: Tree (a,Int) -> Angle -> Angle -> Int -> Tree (a, P2)
 radialLayout (Node (a,d) ts) alpha beta k = Node (a,pt) ts # map (countChildren alpha beta r k) ts   
-	where 	pt 		= mkP2 (d * cos (theta + u)/2) (d * sin (theta + u)/2)
-  			u       = theta + (beta - alpha) * lambda / k  
+	where 	pt 	= mkP2 (d * cos (theta + u)/2) (d * sin (theta + u)/2)
+  		u       = theta + (beta - alpha) * lambda / k  
         	lambda  = countLeaves t 
         	theta 	= alpha 
 
