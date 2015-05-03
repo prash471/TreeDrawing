@@ -19,7 +19,8 @@ radialLayoutstart:: Tree a -> Angle -> Angle -> Tree (a,P2)
 radialLayoutstart t1 alpha beta = radialLayout (decorateDepth t1) alpha beta (countLeaves t1) 
 
 radialLayout :: Tree (a,Int) -> Angle -> Angle -> Int -> Tree (a, P2)
-radialLayout (Node (a,d) ts) alpha beta k = Node (a,pt) ts # map (countChildren alpha beta r k) ts   
+radialLayout (Node (a,d) []) alpha beta k = 
+radialLayout (Node (a,d) ts) alpha beta k = Node (a,pt) ts # map (radialLayout alpha beta k) ts   
 	where 	pt 	= mkP2 (d * cos (theta + u)/2) (d * sin (theta + u)/2)
   		u       = theta + (beta - alpha) * lambda / k  
         	lambda  = countLeaves t 
@@ -27,8 +28,3 @@ radialLayout (Node (a,d) ts) alpha beta k = Node (a,pt) ts # map (countChildren 
 
 countLeaves :: Tree (a,P2) -> Int 
 countLeaves t = L.length $ L.last (L.map (L.map rootLabel) $ L.takeWhile (not . L.null) $ iterate (L.concatMap subForest) [t])
-
-countChildren :: Double -> Angle -> Angle -> Tree (a,Int) -> Tree (a,P2)
-countChildren alpha beta r k (Node (a,d) ts) k =
-	if L.length ts > 0 then  radialLayout (Node (a,d) ts) alpha beta k
-	otherwise return  
