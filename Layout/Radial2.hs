@@ -24,7 +24,7 @@ radialLayout alpha beta k (Node (a,d) []) = Node (a,pt) []
   		u       = theta
         	theta 	= alpha 
 
-radialLayout alpha beta k (Node (a,d) ts) = Node (a,pt) # L.map (radialLayout alpha beta k) ts   
+radialLayout alpha beta k (Node (a,d) ts) = Node (a,pt) (L.map (radialLayout alpha beta k) ts)   
 	where 	pt 	= mkP2 (fromIntegral d * cos (theta + u)/2) (fromIntegral d * sin (theta + u)/2)
   		u       = theta + (beta - alpha) * fromIntegral lambda / fromIntegral k  
         	lambda  = countLeaves (Node (a,d) ts)
