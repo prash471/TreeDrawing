@@ -5,7 +5,7 @@ Algorithms Implemented:
 1) Radail Layout-3
 
 Yee et al's implementation of radial Layout algorithm
-![alt tag](http://i58.tinypic.com/17a2ih.png)
+![alt tag](http://i57.tinypic.com/ajnkb6.png)
 
 2) Radial Layout-1
 
