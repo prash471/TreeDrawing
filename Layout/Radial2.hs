@@ -16,15 +16,14 @@ radialLayoutstart:: Tree a -> Double -> Double -> Tree (a,P2,Int)
 radialLayoutstart t alpha beta = radialLayout alpha beta alpha (countLeaves (decorateDepth 0 t)) (decorateDepth 0 t)
 
 radialLayout :: Double -> Double -> Double -> Int -> Tree (a,P2,Int) ->  Tree (a, P2, Int)
-radialLayout alpha beta theta k (Node (a,pt,d) ts) = Node (a,pt,d) (L.map (foo alpha beta theta k) ts)
+radialLayout alpha beta theta k (Node (a,pt,d) ts) = Node (a,pt,d) (zipWith (foo alpha beta theta k) ts)
 
 foo :: Double -> Double -> Double -> Int -> Tree (a,P2,Int) -> Tree (a,P2,Int)
-foo alpha beta theta k (Node (a,pt,d) ts)	= do	
-			let lambda  = countLeaves (Node (a,pt,d) ts) 	
-			let u       = theta + (beta - alpha) * fromIntegral lambda / fromIntegral k
-			if (L.length ts) > 0 then L.map (radialLayout alpha beta u k) ts else []
-			--return (a,mkP2 (fromIntegral (d) * cos (theta + u)/2) (fromIntegral (d) * sin (theta + u)/2),d)
-
+foo alpha beta theta k (Node (a,pt,d) ts) = Node (a,pt2,d) (L.map (radialLayout alpha beta u k) ts) 
+	where	lambda  = countLeaves (Node (a,pt,d) ts) 	
+		u       = theta + (beta - alpha) * fromIntegral lambda / fromIntegral k
+		pt2 	= mkP2 (fromIntegral d * cos (theta + u)/2) (fromIntegral d * sin (theta + u)/2)
+		
 decorateDepth:: Int -> Tree a -> Tree (a,P2,Int)
 decorateDepth d (Node a ts) = Node (a,mkP2 0 0,d) $ L.map (decorateDepth (d+1)) ts
 
