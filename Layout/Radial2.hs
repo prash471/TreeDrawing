@@ -16,7 +16,7 @@ radialLayoutstart:: Tree a -> Double -> Double -> Tree (a,P2,Int)
 radialLayoutstart t alpha beta = radialLayout alpha beta alpha (countLeaves (decorateDepth 0 t)) (decorateDepth 0 t)
 
 radialLayout :: Double -> Double -> Double -> Int -> Tree (a,P2,Int) ->  Tree (a, P2, Int)
-radialLayout alpha beta theta k (Node (a,pt,d) ts) = Node (a,pt,d) (zipWith (foo alpha beta theta k) ts)
+radialLayout alpha beta theta k (Node (a,pt,d) ts) = Node (a,pt,d) (L.map (foo alpha beta theta k) ts)
 
 foo :: Double -> Double -> Double -> Int -> Tree (a,P2,Int) -> Tree (a,P2,Int)
 foo alpha beta theta k (Node (a,pt,d) ts) = Node (a,pt2,d) (L.map (radialLayout alpha beta u k) ts) 
