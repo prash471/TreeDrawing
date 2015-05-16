@@ -15,12 +15,15 @@ t1 = Node 'A' [Node 'B' (L.map lf "CD"), Node 'I' (L.map lf "JK")] where lf x = 
 radialLayoutstart:: Tree a -> Double -> Double -> Tree (a,P2,Int)
 radialLayoutstart t alpha beta = radialLayout alpha beta alpha (countLeaves (decorateDepth 0 t)) (decorateDepth 0 t)
 
-radialLayout :: Double -> Double -> Double -> Int -> Tree (a,P2,Int) ->  Tree (a, P2, Int)
-radialLayout alpha beta theta k (Node (a,pt,d) ts) = Node (a,pt,d) (L.map (foo alpha beta theta k) ts)
 
-foo :: Double -> Double -> Double -> Int -> Tree (a,P2,Int) -> Tree (a,P2,Int)
-foo alpha beta theta k (Node (a,pt,d) ts) = Node (a,pt2,d) (L.map (radialLayout alpha beta u k) ts) 
-	where	lambda  = countLeaves (Node (a,pt,d) ts) 	
+radialLayout :: Double -> Double -> Double -> Int -> Tree (a,P2,Int) ->  Tree (a, P2, Int)
+radialLayout alpha beta theta k (Node (a,pt,d) ts) = Node (a,pt,d) (foo alpha beta theta k ts)
+
+foo :: Double -> Double -> Double -> Int -> [Tree (a,P2,Int)] -> [Tree (a,P2,Int)]
+foo alpha beta theta k [] = []
+foo alpha beta theta k ((Node (a,pt,d) ts1):ts2)
+	= (Node (a,pt2,d) (foo theta u theta lambda ts1)) : foo alpha beta u k ts2	
+	where	lambda  = countLeaves (Node (a,pt,d) ts1) 	
 		u       = theta + (beta - alpha) * fromIntegral lambda / fromIntegral k
 		pt2 	= mkP2 (fromIntegral d * cos (theta + u)/2) (fromIntegral d * sin (theta + u)/2)
 		
