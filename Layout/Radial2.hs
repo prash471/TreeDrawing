@@ -31,7 +31,8 @@ decorateDepth:: Int -> Tree a -> Tree (a,P2,Int)
 decorateDepth d (Node a ts) = Node (a,mkP2 0 0,d) $ L.map (decorateDepth (d+1)) ts
 
 countLeaves :: Tree (a,P2,Int) -> Int 
-countLeaves t = L.length $ L.last (L.map (L.map rootLabel) $ L.takeWhile (not . L.null) $ iterate (L.concatMap subForest) [t])
+countLeaves (Node _ []) = 1
+countLeaves (Node _ ts) = L.sum (L.map countLeaves ts)
 
 finalTree :: Tree (a,P2,Int) -> Tree (a,P2)
 finalTree (Node (a,pt,d) ts) = Node (a,pt) $ L.map finalTree ts
