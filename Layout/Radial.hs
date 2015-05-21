@@ -2,9 +2,9 @@
 
 module Layout.Radial
        ( 
-        radialLayout1
+        radialLayout
+       ,radialLayout1
        ,radialLayout2
-       ,radialLayout
        ,renderTree
        ) where
 
