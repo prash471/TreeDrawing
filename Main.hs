@@ -6,9 +6,9 @@ import Diagrams.Backend.SVG.CmdLine
 
 t1 = Node 'A' [Node 'B' [], Node 'C'[], Node 'D'[], Node 'E'[], Node 'F'[], Node 'G'[], Node 'H'[], Node 'I'[] ]
 example =
-   renderTree (\n -> (text (show n) # fontSizeG 0.2
-                            <> circle 0.03 # fc white))
-             (~~) (radialLayout1 t1)
+   renderTree (\n -> (text (show n) # fontSizeG 0.5
+                            <> circle 0.5 # fc white))
+             (~~) (radialLayout t1)
    # centerXY # pad 1.1
 
 main = defaultMain example
