@@ -4,6 +4,7 @@ module Layout.Radial
        ( 
         radialLayout1
        ,radialLayout2
+       ,radialLayout
        ,renderTree
        ) where
 
@@ -15,50 +16,110 @@ import Diagrams.TwoD.Vector
 import Diagrams.TwoD.Transform
 import Diagrams.Util as K
 import Diagrams.Prelude
+import Diagrams.TwoD.Layout.Tree
 import Data.Function       (on)
 
+--------------------------------------------------------------------
+-- Radial Layout Implementation (annulus wedge method)
+--
+-- alpha beta defines a annulus wedge of a vertex
+-- d is the depth of any vertex from root
+-- k is #leaves of root and lambda is #leaves of vertex  
+-------------------------------------------------------------------
+
+radialLayout :: Tree a -> Tree (a,P2 Double)
+radialLayout t = finalTree $ 
+		radialLayout' 0 pi 0 (countLeaves $ decorateDepth 0 t) (weight t) (decorateDepth 0 t)
+
+radialLayout' :: Double -> Double -> Double -> Int -> Double -> Tree (a,P2 Double,Int) ->  Tree (a, P2 Double, Int)
+radialLayout' alpha beta theta k w (Node (a,pt,d) ts) = Node (a,pt,d) (foo alpha beta theta k w ts)
+
+foo :: Double -> Double -> Double -> Int -> Double  -> [Tree (a,P2 Double,Int)] -> [Tree (a,P2 Double,Int)]
+foo alpha beta theta k w [] = []
+foo alpha beta theta k w ((Node (a,pt,d) ts1):ts2)
+		= (Node (a,pt2,d) (foo theta u theta lambda w ts1)) : foo alpha beta u k w ts2	
+	where	
+		lambda  = countLeaves (Node (a,pt,d) ts1) 	
+		u       = theta + (beta - alpha) * fromIntegral lambda / fromIntegral k
+		pt2 	= mkP2 (2*w * fromIntegral d * cos (theta + u)/2) (2*w * fromIntegral d * sin (theta + u)/2)
+
+decorateDepth:: Int -> Tree a -> Tree (a,P2 Double,Int)
+decorateDepth d (Node a ts) = Node (a,mkP2 0 0,d) $ L.map (decorateDepth (d+1)) ts
+
+countLeaves :: Tree (a,P2 Double,Int) -> Int
+countLeaves (Node _ []) = 1
+countLeaves (Node _ ts) = L.sum (L.map countLeaves ts)
+
+weight :: Tree a -> Double  
+weight t = L.maximum $ 
+		L.map (\x -> fromIntegral x/5 ) $ 
+		L.map (L.length) $	
+		L.map (L.map rootLabel) $ 
+		L.takeWhile (not . L.null) $ 
+		iterate (L.concatMap subForest) [t]
+
+finalTree :: Tree (a,P2 Double,Int) -> Tree (a,P2 Double)
+finalTree (Node (a,pt,d) ts) = Node (a,pt) $ L.map finalTree ts
+
+
 ---------------------------------------------------------
--- Radial Layout Implementation 1: All children on circle centered at parent
+-- Radial Layout Implementation 1: 
+--
+-- All children on circle centered at parent
+---------------------------------------------------------
 
-radialLayout :: Tree a -> Tree (a,P2)
-radialLayout t = unRelativizeRadial1 (mkP2 0 0) t
+radialLayout1 :: Tree a -> Tree (a,P2 Double)
+radialLayout1 t = unRelativizeRadial1 (mkP2 0 0) t
 
-unRelativizeRadial1 :: P2 -> Tree a -> Tree(a,P2)
+unRelativizeRadial1 :: P2 Double -> Tree a -> Tree(a,P2 Double)
 unRelativizeRadial1 curPt (Node a ts) = Node (a, curPt) (L.zipWith (\v t -> unRelativizeRadial1 (curPt .+^ v) t) vs ts)
-  where	L.map (scale (1/len)) (L.map (rotateBy (1/fromIntegral len/2)) (K.iterateN len (rotateBy (1/fromIntegral len)) unit_X))
+  where	vs   = L.map (scale (1/len)) (L.map (rotateBy (1/fromIntegral len/2)) (K.iterateN len (rotateBy (1/fromIntegral len)) unit_X))
         len  = fromIntegral (L.length ts)
 
----------------------------------------------------------
--- Radial Layout Implementation 2: All children on circle centered at root of the tree in expanding form
 
-foo :: P2 -> P2
-foo k = mkP2 (r * cos t) (r * sin t)
+
+---------------------------------------------------------
+-- Radial Layout Implementation 2: 
+--
+-- All children on circle centered at root of the tree in expanding form
+---------------------------------------------------------
+
+foo2 :: P2 Double -> P2 Double
+foo2 k = mkP2 (r * cos t) (r * sin t)
   where r   = (-1) * snd (unp2 (k))
         t   = 2 * pi * fst (unp2 (k)) / 64
         -- scale as 64: depending upon tree width
 
-radialLayout2 :: Tree a -> Tree (a,P2)
-radialLayout2 t = unRelativizeRadial2 (symmLayout' t)
+radialLayout2 :: Tree a -> Tree (a,P2 Double)
+radialLayout2 t = unRelativizeRadial2 (symmLayout' (with & slHSep .~ 4 & slVSep .~ 4) t)
 
-unRelativizeRadial2 :: Tree (a,P2) -> Tree(a,P2)
-unRelativizeRadial2 tree =  fmap (\x -> (fst x, foo (snd x))) tree
+unRelativizeRadial2 :: Tree (a,P2 Double) -> Tree(a,P2 Double)
+unRelativizeRadial2 tree =  fmap (\x -> (fst x, foo2 (snd x))) tree
 
-----------------------------------------------------------------------
--- Tree rendering
---   Draw a tree annotated with node positions, given functions
+
+{-
+------------------------------------------------------------
+--  Rendering
+------------------------------------------------------------
+
+-- | Draw a tree annotated with node positions, given functions
 --   specifying how to draw nodes and edges.
-
-renderTree :: Monoid' m
-           => (a -> QDiagram b R2 m) -> (P2 -> P2 -> QDiagram b R2 m)
-           -> Tree (a, P2) -> QDiagram b R2 m
+renderTree :: (Monoid' m, Floating n, Ord n)
+           => (a -> QDiagram b V2 n m) -> (P2 n -> P2 n -> QDiagram b V2 n m)
+           -> Tree (a, P2 n) -> QDiagram b V2 n m
 renderTree n e = renderTree' n (e `on` snd)
 
-renderTree' :: Monoid' m
-           => (a -> QDiagram b R2 m) -> ((a,P2) -> (a,P2) -> QDiagram b R2 m)
-           -> Tree (a, P2) -> QDiagram b R2 m
-renderTree' renderNode renderEdge = centerXY . renderTreeR
+-- | Draw a tree annotated with node positions, given functions
+--   specifying how to draw nodes and edges.  Unlike 'renderTree',
+--   this version gives the edge-drawing function access to the actual
+--   values stored at the nodes rather than just their positions.
+renderTree' :: (Monoid' m, Floating n, Ord n)
+           => (a -> QDiagram b V2 n m) -> ((a,P2 n) -> (a,P2 n) -> QDiagram b V2 n m)
+           -> Tree (a, P2 n) -> QDiagram b V2 n m
+renderTree' renderNode renderEdge = alignT . centerX . renderTreeR
   where
     renderTreeR (Node (a,p) cs) =
          renderNode a # moveTo p
       <> mconcat (L.map renderTreeR cs)
       <> mconcat (L.map (renderEdge (a,p) . rootLabel) cs)
+-}
