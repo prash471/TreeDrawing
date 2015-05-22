@@ -36,12 +36,12 @@ radialLayout' alpha beta theta k w (Node (a,pt,d) ts) = Node (a,pt,d) (foo alpha
 
 foo :: Double -> Double -> Double -> Int -> Double  -> [Tree (a,P2 Double,Int)] -> [Tree (a,P2 Double,Int)]
 foo alpha beta theta k w [] = []
-foo alpha beta theta k w ((Node (a,pt,d) ts1):ts2)
-		= (Node (a,pt2,d) (foo theta u theta lambda w ts1)) : foo alpha beta u k w ts2	
+foo alpha beta theta k w (Node (a,pt,d) ts1:ts2)
+		= Node (a,pt2,d) (foo theta u theta lambda w ts1) : foo alpha beta u k w ts2	
 	where	
 		lambda  = countLeaves (Node (a,pt,d) ts1) 	
 		u       = theta + (beta - alpha) * fromIntegral lambda / fromIntegral k
-		pt2 	= mkP2 (2*w * fromIntegral d * cos (theta + u)/2) (2*w * fromIntegral d * sin (theta + u)/2)
+		pt2 	= mkP2 (w * fromIntegral d * cos (theta + u)/2) (w * fromIntegral d * sin (theta + u)/2)
 
 decorateDepth:: Int -> Tree a -> Tree (a,P2 Double,Int)
 decorateDepth d (Node a ts) = Node (a,mkP2 0 0,d) $ L.map (decorateDepth (d+1)) ts
@@ -52,11 +52,8 @@ countLeaves (Node _ ts) = L.sum (L.map countLeaves ts)
 
 weight :: Tree a -> Double  
 weight t = L.maximum $ 
-		L.map (\x -> fromIntegral x/5 ) $ 
-		L.map (L.length) $	
-		L.map (L.map rootLabel) $ 
-		L.takeWhile (not . L.null) $ 
-		iterate (L.concatMap subForest) [t]
+		  L.map (((\ x -> fromIntegral x / 2) . length) . L.map rootLabel)
+		    (takeWhile (not . null) $ iterate (concatMap subForest) [t])
 
 finalTree :: Tree (a,P2 Double,Int) -> Tree (a,P2 Double)
 finalTree (Node (a,pt,d) ts) = Node (a,pt) $ L.map finalTree ts
