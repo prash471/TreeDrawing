@@ -22,9 +22,12 @@ import Data.Function       (on)
 --------------------------------------------------------------------
 -- Radial Layout Implementation 1 (annulus wedge method)
 --
--- alpha beta defines a annulus wedge of a vertex
+-- alpha beta defines annulus wedge of a vertex
 -- d is the depth of any vertex from root
--- k is #leaves of root and lambda is #leaves of vertex  
+-- k is #leaves of root and lambda is #leaves of vertex
+-- weight assigns the length of radius wrt the number of
+-- number of children to avoid node overlapping
+-- Example: https://drive.google.com/file/d/0B3el1oMKFsOIVGVRYzJzWGwzWDA/view
 -------------------------------------------------------------------
 
 radialLayout :: Tree a -> Tree (a,P2 Double)
