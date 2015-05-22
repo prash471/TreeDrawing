@@ -27,6 +27,7 @@ import Data.Function       (on)
 -- k is #leaves of root and lambda is #leaves of vertex
 -- weight assigns the length of radius wrt the number of
 -- number of children to avoid node overlapping
+-- Algotihm 1, Page 18 http://www.cs.cmu.edu/~pavlo/static/papers/APavloThesis032006.pdf
 -- Example: https://drive.google.com/file/d/0B3el1oMKFsOIVGVRYzJzWGwzWDA/view
 -------------------------------------------------------------------
 
