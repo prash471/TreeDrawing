@@ -1,5 +1,10 @@
 # TreeDrawing
 
+Execution
+1) cabal build
+2) cabal exec ghc Main.hs
+3) ./Main -o *.svg -w 400
+
 Algorithms Implemented:
 
 1) Radail Layout-3
