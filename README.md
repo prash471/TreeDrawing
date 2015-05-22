@@ -8,6 +8,7 @@ Execution
 
 3) ./Main -o *.svg -w 400
 
+Comparison with Symmetric Layout https://drive.google.com/file/d/0B3el1oMKFsOIVGVRYzJzWGwzWDA/view
 
 Algorithms Implemented:
 
