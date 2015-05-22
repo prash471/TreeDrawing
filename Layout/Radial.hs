@@ -3,14 +3,14 @@
 module Layout.Radial
        ( 
         radialLayout
-       ,radialLayout1
-       ,radialLayout2
+--       ,radialLayout1
+--       ,radialLayout2
        ,renderTree
        ) where
 
 import Data.Tree
 import Diagrams.TwoD.Types
-import Data.Vector.Unboxed
+--import Data.Vector.Unboxed
 import Data.List as L
 import Diagrams.TwoD.Vector
 import Diagrams.TwoD.Transform
@@ -20,7 +20,7 @@ import Diagrams.TwoD.Layout.Tree
 import Data.Function       (on)
 
 --------------------------------------------------------------------
--- Radial Layout Implementation (annulus wedge method)
+-- Radial Layout Implementation 1 (annulus wedge method)
 --
 -- alpha beta defines a annulus wedge of a vertex
 -- d is the depth of any vertex from root
@@ -58,7 +58,7 @@ weight t = L.maximum $
 finalTree :: Tree (a,P2 Double,Int) -> Tree (a,P2 Double)
 finalTree (Node (a,pt,d) ts) = Node (a,pt) $ L.map finalTree ts
 
-
+{-
 ---------------------------------------------------------
 -- Radial Layout Implementation 1: 
 --
@@ -94,7 +94,7 @@ unRelativizeRadial2 :: Tree (a,P2 Double) -> Tree(a,P2 Double)
 unRelativizeRadial2 tree =  fmap (\x -> (fst x, foo2 (snd x))) tree
 
 
-{-
+
 ------------------------------------------------------------
 --  Rendering
 ------------------------------------------------------------
