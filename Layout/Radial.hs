@@ -31,26 +31,26 @@ import Data.Function       (on)
 -- Example: https://drive.google.com/file/d/0B3el1oMKFsOIVGVRYzJzWGwzWDA/view
 -------------------------------------------------------------------
 
-radialLayout :: Tree a -> Tree (a,P2 Double)
+radialLayout :: Tree a -> Tree (a, P2 Double)
 radialLayout t = finalTree $ 
 		radialLayout' 0 pi 0 (countLeaves $ decorateDepth 0 t) (weight t) (decorateDepth 0 t)
 
-radialLayout' :: Double -> Double -> Double -> Int -> Double -> Tree (a,P2 Double,Int) ->  Tree (a, P2 Double, Int)
-radialLayout' alpha beta theta k w (Node (a,pt,d) ts) = Node (a,pt,d) (foo alpha beta theta k w ts)
+radialLayout' :: Double -> Double -> Double -> Int -> Double -> Tree (a, P2 Double, Int) ->  Tree (a, P2 Double, Int)
+radialLayout' alpha beta theta k w (Node (a, pt, d) ts) = Node (a, pt, d) (assignPos alpha beta theta k w ts)
 
-foo :: Double -> Double -> Double -> Int -> Double  -> [Tree (a,P2 Double,Int)] -> [Tree (a,P2 Double,Int)]
-foo alpha beta theta k w [] = []
-foo alpha beta theta k w (Node (a,pt,d) ts1:ts2)
-		= Node (a,pt2,d) (foo theta u theta lambda w ts1) : foo alpha beta u k w ts2	
+assignPos :: Double -> Double -> Double -> Int -> Double  -> [Tree (a, P2 Double, Int)] -> [Tree (a, P2 Double, Int)]
+assignPos alpha beta theta k w [] = []
+assignPos alpha beta theta k w (Node (a, pt, d) ts1:ts2)
+		= Node (a, pt2, d) (assignPos theta u theta lambda w ts1) : assignPos alpha beta u k w ts2	
 	where	
-		lambda  = countLeaves (Node (a,pt,d) ts1) 	
+		lambda  = countLeaves (Node (a, pt, d) ts1) 	
 		u       = theta + (beta - alpha) * fromIntegral lambda / fromIntegral k
 		pt2 	= mkP2 (w * fromIntegral d * cos (theta + u)/2) (w * fromIntegral d * sin (theta + u)/2)
 
-decorateDepth:: Int -> Tree a -> Tree (a,P2 Double,Int)
-decorateDepth d (Node a ts) = Node (a,mkP2 0 0,d) $ L.map (decorateDepth (d+1)) ts
+decorateDepth:: Int -> Tree a -> Tree (a, P2 Double, Int)
+decorateDepth d (Node a ts) = Node (a, mkP2 0 0, d) $ L.map (decorateDepth (d+1)) ts
 
-countLeaves :: Tree (a,P2 Double,Int) -> Int
+countLeaves :: Tree (a, P2 Double, Int) -> Int
 countLeaves (Node _ []) = 1
 countLeaves (Node _ ts) = L.sum (L.map countLeaves ts)
 
@@ -59,8 +59,8 @@ weight t = L.maximum $
 		  L.map (((\ x -> fromIntegral x / 2) . length) . L.map rootLabel)
 		    (takeWhile (not . null) $ iterate (concatMap subForest) [t])
 
-finalTree :: Tree (a,P2 Double,Int) -> Tree (a,P2 Double)
-finalTree (Node (a,pt,d) ts) = Node (a,pt) $ L.map finalTree ts
+finalTree :: Tree (a, P2 Double, Int) -> Tree (a, P2 Double)
+finalTree (Node (a, pt, d) ts) = Node (a, pt) $ L.map finalTree ts
 
 {-
 ---------------------------------------------------------
