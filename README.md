@@ -18,7 +18,7 @@ Algorithms Implemented:
 
 ![alt tag](http://i57.tinypic.com/spfbpe.png)
 
-1) Radail Layout-3
+2) Radail Layout-3
 
 Yee et al's implementation of radial Layout algorithm
 
@@ -32,13 +32,15 @@ Yee et al's implementation of radial Layout algorithm
 ![alt tag](http://i57.tinypic.com/ajnkb6.png)
 
 
-2) Radial Layout-2
+3) Ringed Circular Layout Tree
 
 Radial view of tree where all children are placed on a circle centered at there parent.
 
+![alt tag](http://i61.tinypic.com/aag0lt.png)
+
 ![alt tag](http://i57.tinypic.com/330rc5y.png)
 
-3) Radail Layout-1
+4) Radail Layout via Syemmetric Layout 
 
 Radial view of tree where nodes are placed in hierarchical order centered at the root of tree
 
