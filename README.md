@@ -12,6 +12,12 @@ Comparison with Symmetric Layout https://drive.google.com/file/d/0B3el1oMKFsOIVG
 
 Algorithms Implemented:
 
+1) Generalized Radial Layout Implementation
+
+![alt tag](http://i58.tinypic.com/10zqogk.png)
+
+![alt tag](http://i57.tinypic.com/spfbpe.png)
+
 1) Radail Layout-3
 
 Yee et al's implementation of radial Layout algorithm
