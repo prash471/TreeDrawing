@@ -3,6 +3,7 @@
 module Layout.Radial
        ( 
         radialLayout
+        genRadialLayout
 --       ,radialLayout1
 --       ,radialLayout2
        ,renderTree
@@ -61,6 +62,88 @@ weight t = L.maximum $
 
 finalTree :: Tree (a, P2 Double, Int) -> Tree (a, P2 Double)
 finalTree (Node (a, pt, d) ts) = Node (a, pt) $ L.map finalTree ts
+
+
+---------------------------------------------------------
+-- Generalized Radial Layout Implementation
+--
+-- Nodes which are larger in shape will get 
+-- more annulus wedge as they need to occupy 
+-- more space, Ratio depends upon the node's 
+-- diameter to the circumference of the level circle
+--------------------------------------------------------------------
+-- Radial Layout Implementation 1 (annulus wedge method)
+--
+-- alpha beta defines annulus wedge of a vertex
+-- d is the depth of any vertex from root
+-- k is #leaves of root and lambda is #leaves of vertex
+-- weight assigns the length of radius wrt the number of
+-- number of children to avoid node overlapping
+-- Extension of Algotihm 1, Page 18 http://www.cs.cmu.edu/~pavlo/static/papers/APavloThesis032006.pdf
+-- Example: https://drive.google.com/file/d/0B3el1oMKFsOIVGVRYzJzWGwzWDA/view
+-------------------------------------------------------------------
+
+genRadialLayout :: Tree (QDiagram SVG V2 Double Any) -> Tree (QDiagram SVG V2 Double Any, P2 Double)
+genRadialLayout t = finalTree $ 
+		radialLayout' 0 pi 0 (countLeaves $ decorateDepth 0 t) (sumRadLevel ((showlevels (decorateDepth 0 t))!!1)) (decorateDepth 0 t)
+
+genRadialLayout' :: Double -> Double -> Double -> Int -> Double -> Tree (QDiagram SVG V2 Double Any, P2 Double, Int) ->  Tree (QDiagram SVG V2 Double Any, P2 Double, Int)
+genRradialLayout' alpha beta theta k t (Node (a, pt, d) ts) = Node (a, pt, d) (assignPos' alpha beta theta k t ts)
+
+assignPos' :: Double -> Double -> Double -> Int -> Double -> [Tree (QDiagram SVG V2 Double Any, P2 Double, Int)] -> [Tree (QDiagram SVG V2 Double Any, P2 Double, Int)]
+assignPos' alpha beta theta k t [] = []
+assignPos' alpha beta theta k t (Node (a, pt, d) ts1:ts2)
+		= Node (a, pt2, d) (assignPos' theta u theta lambda phi ts1) : assignPos' alpha beta u k t ts2	
+	where	
+		lambda  = countLeaves (Node (a, pt, d) ts1)
+		--phi	= sumRad (Node (a, pt, d) ts1)
+		phi	= sumRadLevel ((showlevels (Node (a, pt, d) ts1))!!d)
+		nodeRad	= 2 * findrad 1.0 1.0 a 
+		u       = theta + (beta - alpha) * nodeRad / t
+		pt2 	= mkP2 ( 10*t*enRad * fromIntegral d *cos (theta + u)/2) ( 10*t*enRad * fromIntegral d *sin (theta + u)/2)
+	--	p	= (calcRadius ((beta - alpha) /fromIntegral k) enRad) * fromIntegral d 
+
+
+sumRad :: Tree (QDiagram SVG V2 Double Any, P2 Double, Int) -> Double
+sumRad (Node (a,pt,d) []) = findrad 1.0 1.0 a
+sumRad (Node _ ts) = L.sum (L.map sumRad ts)
+
+enRad = maximum $ liftM3 (findrad) [-0.5,-0.4,-0.3,-0.2,-0.1,0.1,0.2,0.3,0.4,0.5] [-0.5,-0.4,-0.3,-0.2,-0.1,0.1,0.2,0.3,0.4,0.5] [d1,d3,d8]
+
+findrad :: Double -> Double -> QDiagram SVG V2 Double Any -> Double
+findrad a b d = radius (V2 a b) d
+
+mapTuple (a, b, c) = a
+
+showlevels :: Tree (QDiagram SVG V2 Double Any, P2 Double, Int) -> [[(QDiagram SVG V2 Double Any, P2 Double, Int)]]
+showlevels t =
+    map (map rootLabel) $
+        takeWhile (not . null) $
+        iterate (concatMap subForest) [t]
+
+sumRadLevel :: [(QDiagram SVG V2 Double Any, P2 Double, Int)] -> Double
+sumRadLevel t = 2 * (sum $ map (findrad 1.0 1.0) (map mapTuple t)) 
+
+calcRadius :: Double -> Double -> Double
+calcRadius theta enrad = enrad / sin (theta / 2)  
+
+--d1 :: Path V2 Double
+d1 :: QDiagram SVG V2 Double Any
+--d1 = text "A" # fc black # fontSizeG 6 `atop` circle 11 # fc white
+d1 = circle 0.1 # fc white
+
+d8 :: QDiagram SVG V2 Double Any
+--d1 = text "A" # fc black # fontSizeG 6 `atop` circle 11 # fc white
+d8 = circle 0.4 # fc white
+
+d2 :: QDiagram SVG V2 Double Any
+d2 = text "B" # fc black # fontSizeG 6 `atop` rect 70 140 # fc white
+
+d3 :: QDiagram SVG V2 Double Any
+d3 = square 0.4 # fc white
+
+d4 :: QDiagram SVG V2 Double Any
+d4 = text "D" # fc black # fontSizeG 6 `atop` eqTriangle 13 # fc white
 
 {-
 ---------------------------------------------------------

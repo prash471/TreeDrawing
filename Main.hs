@@ -5,13 +5,16 @@ import Data.Tree
 import Diagrams.Backend.SVG.CmdLine
 
 t1 = Node 'A' [Node 'B' (L.map lf "CDQXXXXXXXX"), Node 'I' (L.map lf "CDQ"), Node 'L' (L.map lf "CDQ")] where lf x = Node x []
+t2 = Node d2 [Node d2 [], Node d2 [], Node d2 [], Node d2 [], Node d2 [], Node d2 [], Node d2 [], Node d2 [] ]
 --t1 = Node 'A' [Node 'B' (L.map lf "CDQXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"), Node 'I' [Node 'J' (L.map lf "CDQXXXX")]] where lf x = Node x []
 --t1 = Node 'A' [Node 'B' [], Node 'C'[], Node 'D'[], Node 'E'[], Node 'F'[], Node 'G'[], Node 'H'[], Node 'I'[] ]
 
-example =
+example1 =
    renderTree (\n -> (text (show n) # fontSizeG 0.5
                             <> circle 0.5 # fc white))
              (~~) (radialLayout t1)
    # centerXY # pad 1.1
 
-main = defaultMain example
+example2 = renderTree id (~~) (genRadialLayout1 t2) # centerXY # pad 1.1
+
+main = defaultMain example1
